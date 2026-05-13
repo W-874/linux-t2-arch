@@ -39,7 +39,7 @@ replaces=('apple-gmux-t2-dkms-git')
 options=('!strip')
 T2_PATCH_HASH=10244ac33020e0f849c1e401584a6011ded1282b
 source=(
-  https://cdn.kernel.org/pub/linux/kernel/v${_basever%%.*}.x/testing/linux-${_srcver}.tar.xz
+  https://git.kernel.org/torvalds/t/linux-${_srcver}.tar.gz
   config  # the main kernel config file
 
   # t2linux Patches
