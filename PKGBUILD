@@ -5,14 +5,15 @@
 #               apple-ibridge drivers, respectively.
 
 pkgbase="linux-t2"
-_pkgver=7.0.5
-pkgver=7.0.5
-_srcname=linux-${_pkgver}
+_basever=7.1
+_rcver=3
+_srcver=${_basever}-rc${_rcver}
+pkgver=${_basever}rc${_rcver}
+_srcname=linux-${_srcver}
 pkgrel=1
 archrel=1
 pkgdesc='Linux kernel for T2 Macs'
-_srctag=v${_pkgver%.*}-${_pkgver##*.}
-url="https://github.com/archlinux/linux/commits/$_srctag"
+url="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tag/?h=v${_srcver}"
 arch=(x86_64)
 license=(GPL2)
 makedepends=(
@@ -36,14 +37,13 @@ makedepends=(
 conflicts=('apple-gmux-t2-dkms-git')
 replaces=('apple-gmux-t2-dkms-git')
 options=('!strip')
-_srcname="linux-${_pkgver}-arch${archrel}"
 T2_PATCH_HASH=10244ac33020e0f849c1e401584a6011ded1282b
 source=(
-  https://github.com/archlinux/linux/archive/refs/tags/v${_pkgver}-arch${archrel}.tar.gz
+  https://cdn.kernel.org/pub/linux/kernel/v${_basever%%.*}.x/testing/linux-${_srcver}.tar.xz
   config  # the main kernel config file
 
   # t2linux Patches
-  patches::git+https://github.com/t2linux/linux-t2-patches
+  patches::git+https://github.com/t2linux/linux-t2-patches#branch=7.1
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -251,7 +251,7 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-sha256sums=('b1eb3e25acf458dadd36b8abc484bd460f6b642182439efd4f86f47196bff2c2'
+sha256sums=('SKIP'
             '9fb185362b3b01ab71b8da11057bc0bd4b6e4526d6be770e62bf70eaf118232a'
             'SKIP')
 # vim:set ts=8 sts=2 sw=2 et:
