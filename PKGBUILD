@@ -30,7 +30,6 @@ makedepends=(
   # htmldocs
   graphviz
   imagemagick
-  python-yaml
   python-sphinx
   texlive-latexextra
   xmlto
@@ -79,14 +78,7 @@ prepare() {
     src="${src##*/}"
     [[ $src = *.patch ]] || continue
     echo "Applying patch $src..."
-    if patch --dry-run -Np1 < "../$src" >/dev/null; then
-      patch -Np1 < "../$src"
-    elif patch --dry-run -R -Np1 < "../$src" >/dev/null 2>&1; then
-      echo "Patch $src already applied, skipping."
-    else
-      echo "Patch $src failed to apply cleanly."
-      return 1
-    fi
+    patch -Np1 < "../$src"
   done
 
   echo "Setting config..."
